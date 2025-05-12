@@ -1,0 +1,89 @@
+variables:
+    {%player's uuid%::deaths} = 0
+    {%player's uuid%::kills} = 0
+    {%player's uuid%::blocks} = 0
+    {%player's uuid%::playtime} = 0
+    {%player's uuid%::chat} = 0
+    {%player's uuid%::hits} = 0
+    {%player's uuid%::jumps} = 0
+
+on script load:
+    set {mongoCluster} to mongo server with connection string ""
+    set {mongoDatabase} to mongo database "" of {mongoCluster}
+    set {mongoCollection} to mongo collection "" of {mongoDatabase}
+
+on first join:
+    set {_doc} to a new mongo document
+    set mongo value "uuid" of {_doc} to player's uuid
+    set mongo value "kills" of {_doc} to 0
+    set mongo value "blocks" of {_doc} to 0
+    set mongo value "chat" of {_doc} to 0
+    set mongo value "playtime" of {_doc} to 0
+
+
+
+    insert mongo document {_doc} into collection {mongoCollection}
+
+on join:
+    set {_playtimerightnow} to now
+
+on death:
+    add 1 to {%player's uuid%::deaths}   
+
+on jump:
+    add 1 to {%player's uuid%::jumps}
+
+on break:
+    add 1 to {%player's uuid%::blocks}
+
+on chat:
+    add 1 to {%player's uuid%::chat}
+
+on kill:
+    add 1 to {%player's uuid%::kills}
+
+on hit:
+    add 1 to {%player's uuid%::hits}
+
+every 1 minute:
+    loop all players:
+        if difference between {_playtimerightnow} and now >= 1 minute:
+            add 1 {%player' uuid%::playtime}
+
+
+command /stats:
+    trigger:
+        statsguiopen(player)
+
+function statsguiopen(P: player):
+
+    set {%player's uuid%::playtime123} to {%player's uuid%::playtime} / 60
+
+    set {_doc} to first mongo document with mongosk filter where field "uuid" is player's uuid of collection {mongoCollection}
+    set mongo value "kills" of {_doc} to {%player's uuid%::kills}
+    set mongo value "deaths" of {_doc} to {%player's uuid%::deaths}
+    set mongo value "blocks" of {_doc} to {%player's uuid%::blocks}
+    set mongo value "hits" of {_doc} to {%player's uuid%::hits}
+    set mongo value "playtime" of {_doc} to {%player's uuid%::playtime123}
+    set mongo value "chat" of {_doc} to {%player's uuid%::chat}
+    set mongo value "jumps" of {_doc} to {%player's uuid%::jumps}
+
+    update mongo document {_doc} of {mongoCollection}
+
+    set {_kills} to mongo value "kills" of {_doc}
+    set {_deaths} to mongo value "deaths" of {_doc}
+    set {_hits} to mongo value "hits" of {_doc}
+    set {_blocks} to mongo value "blocks" of {_doc}
+    set {_playtime} to mongo value "playtime" of {_doc}
+    set {_chat} to mongo value "chat" of {_doc}
+    set {_jumps} to mongo value "jumps" of {_doc}
+
+    set {_statsgui} to a new chest inventory with 3 row with name "Statistics"
+    set slot 10 of {_statsgui} to netherite sword named "&4ᴋɪʟʟѕ" with lore "&fYou have killed &4%{_kills}% &fplayers"
+    set slot 11 of {_statsgui} to clock named "&x&9&E&D&E&E&Eᴘ&x&9&E&D&E&E&Eʟ&x&9&E&D&E&E&Eᴀ&x&9&E&D&E&E&Eʏ&x&9&E&D&E&E&Eᴛ&x&9&E&D&E&E&Eɪ&x&9&E&D&E&E&Eᴍ&x&9&E&D&E&E&Eᴇ" with lore "&fYou played for &x&9&E&D&E&E&Eᴘ&x&9&E&D&E&E&E%{_playtime}%"
+    set slot 12 of {_statsgui} to skull named "&x&3&6&4&5&6&Bᴅ&x&3&6&4&5&6&Bᴇ&x&3&6&4&5&6&Bᴀ&x&3&6&4&5&6&Bᴛ&x&3&6&4&5&6&Bʜ&x&3&6&4&5&6&Bѕ" with lore "&fYou have died &x&3&6&4&5&6&B%{_deaths}% &ftimes"
+    set slot 13 of {_statsgui} to arrow named "&x&8&B&F&F&A&Fʜ&x&8&B&F&F&A&Fɪ&x&8&B&F&F&A&Fᴛ&x&8&B&F&F&A&Fѕ" with lore "&fYou have taken &x&8&B&F&F&A&F%{_hits}% &fhits"
+    set slot 14 of {_statsgui} to diamond pickaxe named "&x&F&F&F&2&8&Bʙ&x&F&F&F&2&8&Bʟ&x&F&F&F&2&8&Bᴏ&x&F&F&F&2&8&Bᴄ&x&F&F&F&2&8&Bᴋ&x&F&F&F&2&8&Bѕ" with lore "&fYou have broken %{_blocks}% &fblocks%"
+    set slot 15 of {_statsgui} to feather named "&x&F&F&A&B&5&Cᴄ&x&F&F&A&B&5&Cʜ&x&F&F&A&B&5&Cᴀ&x&F&F&A&B&5&Cᴛ &x&F&F&A&B&5&Cᴛ&x&F&F&A&B&5&Cᴇ&x&F&F&A&B&5&Cx&x&F&F&A&B&5&Cᴛ" with lore "&fYou have wrote &x&F&F&A&B&5&C%{_chat}% &ftimes"
+    set slot 16 of {_statsgui} to potion of night  named "&x&7&E&F&F&A&6ᴊ&x&7&E&F&7&B&Cᴜ&x&7&E&F&0&D&3ᴍ&x&7&E&E&8&E&9ᴘ&x&7&E&E&0&F&Fѕ" with lore "&fYou have jumped &x&7&E&F&F&A&6%{_jumps}% &ftimes"
+    open {_statsgui} to {_P}
