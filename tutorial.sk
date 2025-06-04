@@ -18,7 +18,7 @@ command /tutorial:
 		send title "&e&lCrates" with subtitle "&7Open Crates for Prizes!" to player for 4 seconds
 		wait 5 seconds
 		teleport player to {tutspawn}		
-		send title "&b&lThanks for Playing" with subtitle "&rHave fun playing &6&lRizzBox!" to player for 3 seconds
+		send title "&b&lThanks for Playing" with subtitle "&rHave fun playing &6&lKeyall!" to player for 3 seconds
 		if {tut::%player%} is not set:
 			set {tut::%player%} to true
 			execute console command "excellentcrates key give %player% rank 1"
