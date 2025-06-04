@@ -3,7 +3,7 @@
 
 
 options:
-    prefix: &6&kw &6&lᴠɪɴᴇ&e&lʙᴏxx &e&kw
+    prefix: &6&kw &bSS &e&kw
     discord: https://discord.gg/QtP5rUyYmd
 
 command /check <text> <offline player>:
@@ -24,9 +24,9 @@ command /check <text> <offline player>:
                     loop 3 times:
                         if {beingssd::%arg-2%} is true:
                             send arg-2 title "&c&lYOU ARE BEING CHECKED!" with subtitle "&d&lPLEASE LISTEN TO STAFF THAT IS CHECKING YOU, LEAVING WILL RESULT IN LONGER BAN!" for 300 seconds
-                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/szsdZw5NJB>DISCORD CLICK ME<reset>" to arg-2
-                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/szsdZw5NJB>DISCORD CLICK ME<reset>" to arg-2
-                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/szsdZw5NJB>DISCORD CLICK ME<reset>" to arg-2
+                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/sdfefzdB>DISCORD CLICK ME<reset>" to arg-2
+                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/se3zzeds>DISCORD CLICK ME<reset>" to arg-2
+                            send "{@prefix} &a%arg-2% You have 30 seconds to join {@discord} and join ScreenShare VC. If you want to admit type 'admit' on chat. <link:https://discord.gg/swedzde>DISCORD CLICK ME<reset>" to arg-2
                             wait 15 seconds
                 else if arg-1 is "clear":
                     set {beingssd::%arg-2%} to false
