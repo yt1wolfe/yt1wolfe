@@ -1,5 +1,5 @@
 options:
-	prefix: &9&lLocalbox &7&o>>&r
+	prefix: &9&lSupplydrop &7&o>>&r
 
 command /setpos1x:
 	permission: op
