@@ -1,6 +1,6 @@
 command /report [<player>] [<text>]:
     cooldown: 10 seconds
-    cooldown message: &6&lRizzBox &fYou need to wait &l%remaining time% &rto use this command again!
+    cooldown message: &6&lReport &fYou need to wait &l%remaining time% &rto use this command again!
     trigger:
         if arg-1 is not set:
             send "&7Usage: &c/report [player] [reason]" to player
