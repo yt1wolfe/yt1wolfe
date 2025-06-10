@@ -62,19 +62,19 @@ function quests(p: player):
 every 6 hours:
 	loop all players:
 		if {goldenquest::%loop-player%} = true:
-			send "&6&lRizzBox |&b&l Your golden apple quest can now be redone" to loop-player
+			send "&6&lQuests |&b&l Your golden apple quest can now be redone" to loop-player
 			clear {goldenquest::%loop-player%}
 			set {goldenapple::%loop-player%} to 0
 		if {obiquest::%loop-player%} = true:
-			send "&6&lRizzBox |&b&l Your mine obsidian quest can now be redone" to loop-player
+			send "&6&lQuests |&b&l Your mine obsidian quest can now be redone" to loop-player
 			clear {obiquest::%loop-player%}
 			set {obimined::%loop-player%} to 0
 		if {timequest::%loop-player%} = true:
-			send "&6&lRizzBox |&b&l Your playtime quest can now be redone" to loop-player
+			send "&6&lQuests |&b&l Your playtime quest can now be redone" to loop-player
 			clear {timequest::%loop-player%}
 			set {timeplayed::%loop-player%} to 0	
 		if {killsquest::%loop-player%} = true:
-			send "&6&lRizzBox |&b&l Your Kills quest can now be redone" to loop-player
+			send "&6&lQuests |&b&l Your Kills quest can now be redone" to loop-player
 			clear {killsquest::%loop-player%}
 			set {killsquest::%loop-player%} to 0	
 command /resetquests:
@@ -82,19 +82,19 @@ command /resetquests:
 	trigger:
 		loop all players:
 			if {goldenquest::%loop-player%} = true:
-				send "&6&lRizzBox |&b&l Your golden apple quest can now be redone" to loop-player
+				send "&6&lQuests |&b&l Your golden apple quest can now be redone" to loop-player
 				clear {goldenquest::%loop-player%}
 				set {goldenapple::%loop-player%} to 0
 			if {obiquest::%loop-player%} = true:
-				send "&6&lRizzBox |&b&l Your mine obsidian quest can now be redone" to loop-player
+				send "&6&lQuests |&b&l Your mine obsidian quest can now be redone" to loop-player
 				clear {obiquest::%loop-player%}
 				set {obimined::%loop-player%} to 0
 			if {timequest::%loop-player%} = true:
-				send "&6&lRizzBox |&b&l Your playtime quest can now be redone" to loop-player
+				send "&6&lQuests |&b&l Your playtime quest can now be redone" to loop-player
 				clear {timequest::%loop-player%}
 				set {timeplayed::%loop-player%} to 0	
 			if {killsquest::%loop-player%} = true:
-				send "&6&lRizzBox |&b&l Your Kills quest can now be redone" to loop-player
+				send "&6&lQuests |&b&l Your Kills quest can now be redone" to loop-player
 				clear {killsquest::%loop-player%}
 				set {killsquest::%loop-player%} to 0	                
 on eating of golden apple:
